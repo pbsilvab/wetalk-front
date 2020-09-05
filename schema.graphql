@@ -1,0 +1,180 @@
+type ChannelsQuery {
+    read( Id: ID! ): Channel
+}
+
+type ChannelsMutation {
+    create(channel: ChannelInput ): Channel
+    update(id: ID!, channel: ChannelInput ): Channel
+}
+
+type Channel {
+    id: ID
+    name: String
+    groupId: ID
+    meetings: [Meeting]
+}
+
+input ChannelInput {
+    name: String!
+    groupId: ID!
+}
+# Información del resultado de la paginación
+type PageInfo {
+  # Cursor para adquirir la página siguiente usando `after` (en caso de haber)
+  endCursor: String
+  # Si hay o no páginas para buscar usando `after` con `endCursor`
+  hasNextPage: Boolean!
+  # Si hay o no páginas para buscar usando `before` con `startCursor`
+  hasPreviousPage: Boolean!
+  # Cursor para adquirir la página anterior usando `before`(en caso de haber)
+  startCursor: String
+}
+
+type FilterOption {
+  value: String!
+  text: String!
+}
+
+type FilterSetting {
+  field: String!
+  text: String!
+  options: [FilterOption]!
+  multi: Boolean!
+}
+
+type OrderSetting {
+  field: String!
+  text: String!
+}
+
+# Entrega información con
+# los filtros que pueden ser aplicados,
+# los campos sobre los que se puede buscar
+# y los campos por los que se puede ordenar
+type FindSettings {
+  # Lista de campos que pueden ser utilizados en el campo `fields` de `SearchTermInput`
+  searchableFields: [String]!
+  # Filtros que pueden ser aplicados
+  filters: [FilterSetting]!
+  # Campos por los que se puede ordenar la búsqueda
+  orders: [OrderSetting]!
+}
+
+input FilterInput {
+  field: String!
+  value: String!
+}
+
+input SearchTermInput {
+  # Campos sobre los que se ha de buscar
+  fields: [String]!
+  # Texto a buscar en los campos
+  value: String!
+  # Forma para efectuar la búsqueda (default es LIKE)
+  match: SearchTermMatch
+}
+
+enum SearchTermMatch {
+  LIKE
+  EXACT
+}
+
+type GroupsQuery {
+  read( id: ID! ): Group
+  # Lista de depósitos
+  find(
+    # Cantidad de resultados a incluir en orden ascendente
+    first: Int
+    # Último cursor de la paginación anterior
+    after: ID
+    # Cantidad de resultados a incluir en orden descendente
+    last: Int
+    # Primer cursor de la paginación anterior
+    before: ID
+    # Busca listas de precio cuyos campos especificados contengan el texto a buscar
+    searchTerms: [SearchTermInput]
+    # Filters
+    filters: [FilterInput]
+    # Order
+    order: String
+  ): GroupsConnection!
+
+  # Entrega información con
+  # los filtros que pueden ser aplicados,
+  # los campos sobre los que se puede buscar
+  # y los campos por los que se puede ordenar
+  findSettings: FindSettings!
+}
+
+type GroupsMutation {
+    create(group: GroupInput ):  Group
+    update(id: ID!, group: GroupInput ):  Group
+}
+
+type Group {
+  id: ID
+  name: String
+  channels:[Channel]
+}
+
+input GroupInput {
+  name: String!
+}
+
+type GroupsConnection {
+  # Información de la paginación
+  pageInfo: PageInfo!
+  # Resultados de la búsqueda
+  edges: [GroupEdge]!
+  # Total de elementos en EcomSync
+  totalCount: Int!
+}
+
+# Resultado de una búsqueda paginada
+type GroupEdge {
+  # Cursor para paginar a partir de este resultado
+  cursor: String!
+  # Depósitos en EcomSync
+  node: Group!
+}
+type MeetingsQuery {
+    read( Id: ID! ): Meeting
+}
+
+type MeetingsMutation {
+    create(meeting: MeetingInput ): Meeting
+    update(id: ID!, meeting: MeetingInput ): Meeting
+}
+
+type Meeting {
+    id: ID
+    name: String
+    from: String
+    to: String
+    channelId: ID
+}
+
+input MeetingInput {
+    name: String!
+    from: String!
+    to: String!
+    channelId: ID!
+}
+type Query {
+
+    groups: GroupsQuery
+
+    channels: ChannelsQuery
+
+    meetings: MeetingsQuery
+}
+
+type Mutation {
+
+    groups: GroupsMutation
+
+    channels: ChannelsMutation
+
+    meetings: MeetingsMutation
+}
+scalar Upload
