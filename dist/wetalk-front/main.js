@@ -176,7 +176,7 @@ function AppComponent_mat_card_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("srcObject", stream_r13)("autoplay", true);
 } }
-const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__('http://localhost:4003/');
+const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(process.env.SOCKET_HOST);
 const peer = new peerjs__WEBPACK_IMPORTED_MODULE_4___default.a(undefined, {
     host: '/',
     port: 3001
@@ -437,7 +437,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const uri = 'http://localhost:4003/graphql'; // <-- add the URL of the GraphQL server here
+const uri = `${process.env.SCHEMA_HOST}`; // <-- add the URL of the GraphQL server here
 function createApollo(httpLink) {
     return {
         link: httpLink.create({ uri }),

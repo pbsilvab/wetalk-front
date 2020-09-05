@@ -8,7 +8,7 @@ import * as io from 'socket.io-client';
 import Peer from 'peerjs';
 
 
-const socket = io('http://localhost:4003/');
+const socket = io(process.env.SOCKET_HOST);
 
 const peer = new Peer(undefined, {
   host: '/',
