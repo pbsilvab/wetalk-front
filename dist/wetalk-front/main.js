@@ -521,8 +521,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    SCHEMA_HOST: 'http://3.131.97.220/graphql',
-    SOCKET_HOST: 'http://3.131.97.220/socket'
+    SCHEMA_HOST: 'https://wetalk.sharkrahs.com/graphql',
+    SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket'
 };
 /*
  * For easier debugging in development mode, you can import the following file
