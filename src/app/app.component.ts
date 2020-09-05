@@ -1,14 +1,14 @@
-import { Component, Query, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { gql, Apollo } from 'apollo-angular';
-import { startMediaObject, stopMediaObject } from './AudioMediaService';
-import { Subject, Observable } from 'rxjs';
-import {  map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { GroupsQuery, Channel, Meeting } from './types/schema';
 import * as io from 'socket.io-client';
 import Peer from 'peerjs';
+import { environment } from 'src/environments/environment';
 
 
-const socket = io(process.env.SOCKET_HOST);
+const socket = io(environment.SOCKET_HOST);
 
 const peer = new Peer(undefined, {
   host: '/',
