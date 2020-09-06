@@ -181,7 +181,7 @@ function AppComponent_mat_card_19_Template(rf, ctx) { if (rf & 1) {
 const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].SOCKET_HOST);
 const peer = new peerjs__WEBPACK_IMPORTED_MODULE_4___default.a(undefined, {
     host: '/',
-    port: 3001
+    port: 3001,
 });
 let userId;
 peer.on('open', (id) => {
@@ -522,7 +522,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     SCHEMA_HOST: 'https://wetalk.sharkrahs.com/graphql',
-    SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket'
+    SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket.io'
 };
 /*
  * For easier debugging in development mode, you can import the following file

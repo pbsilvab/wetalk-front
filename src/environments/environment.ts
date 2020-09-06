@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   SCHEMA_HOST: 'https://wetalk.sharkrahs.com/graphql',
-  SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket'
+  SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket.io'
 };
 
 /*

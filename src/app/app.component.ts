@@ -12,7 +12,7 @@ const socket = io(environment.SOCKET_HOST);
 
 const peer = new Peer(undefined, {
   host: '/',
-  port: 3001
+  port: 3001,
 });
 let userId: string;
 peer.on('open', (id) => {
