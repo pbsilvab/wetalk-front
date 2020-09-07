@@ -229,19 +229,24 @@ class AppComponent {
     }
     // tslint:disable-next-line: typedef
     intoMeeting(roomid) {
+        console.log(roomid);
         navigator.mediaDevices.getUserMedia({
             video: false,
             audio: true
         }).then(stream => {
+            console.log('emit');
             socket.emit('join-room', roomid, userId);
             this.addVideoStream(stream);
             peer.on('call', call => {
+                console.log('call');
                 call.answer(stream);
                 call.on('stream', userVideoStream => {
                     this.addVideoStream(userVideoStream);
                 });
             });
             socket.on('user-connected', (MeetingId) => {
+                console.log('user-connected');
+                console.log(MeetingId);
                 this.connectToNewUser(MeetingId, stream);
             });
         });

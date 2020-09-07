@@ -84,11 +84,15 @@ export class AppComponent implements OnInit {
         audio: true
       }).then( stream => {
 
+          console.log('emit');
+
           socket.emit('join-room', roomid, userId);
 
           this.addVideoStream(stream);
 
           peer.on('call', call => {
+
+              console.log('call');
 
               call.answer(stream);
 
@@ -99,6 +103,10 @@ export class AppComponent implements OnInit {
           });
 
           socket.on('user-connected', (  MeetingId  ) => {
+
+            console.log('user-connected');
+            console.log(MeetingId);
+
             this.connectToNewUser(MeetingId, stream);
           });
       });
