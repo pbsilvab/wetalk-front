@@ -14,9 +14,12 @@ const peer = new Peer(undefined, {
   host: '/',
   port: 3001,
 });
+
 let userId: string;
+
 peer.on('open', (id) => {
   userId = id;
+  console.log(userId);
 });
 
 @Component({
@@ -80,11 +83,12 @@ export class AppComponent implements OnInit {
   intoMeeting( roomid: string ) {
       console.log(roomid);
       navigator.mediaDevices.getUserMedia({
-        video: false,
+        video: true,
         audio: true
       }).then( stream => {
 
           console.log('emit');
+          console.log(userId);
 
           socket.emit('join-room', roomid, userId);
 
@@ -113,9 +117,9 @@ export class AppComponent implements OnInit {
 
   }
 
-  connectToNewUser = (userId, stream) => {
+  connectToNewUser = (uId, stream) => {
 
-    const call = peer.call(userId, stream);
+    const call = peer.call(uId, stream);
 
     call.on('stream', userVideoStream => {
         this.addVideoStream(userVideoStream);

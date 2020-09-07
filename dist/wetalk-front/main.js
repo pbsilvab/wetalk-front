@@ -186,6 +186,7 @@ const peer = new peerjs__WEBPACK_IMPORTED_MODULE_4___default.a(undefined, {
 let userId;
 peer.on('open', (id) => {
     userId = id;
+    console.log(userId);
 });
 class AppComponent {
     constructor(apollo) {
@@ -193,8 +194,8 @@ class AppComponent {
         this.title = 'wetalk-front';
         this.videoGrid = [];
         this.muted = false;
-        this.connectToNewUser = (userId, stream) => {
-            const call = peer.call(userId, stream);
+        this.connectToNewUser = (uId, stream) => {
+            const call = peer.call(uId, stream);
             call.on('stream', userVideoStream => {
                 this.addVideoStream(userVideoStream);
             });
@@ -231,10 +232,11 @@ class AppComponent {
     intoMeeting(roomid) {
         console.log(roomid);
         navigator.mediaDevices.getUserMedia({
-            video: false,
+            video: true,
             audio: true
         }).then(stream => {
             console.log('emit');
+            console.log(userId);
             socket.emit('join-room', roomid, userId);
             this.addVideoStream(stream);
             peer.on('call', call => {
