@@ -78,13 +78,13 @@ export class AppComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   intoMeeting( roomid: string ) {
-
+      console.log(roomid);
       navigator.mediaDevices.getUserMedia({
         video: false,
         audio: true
       }).then( stream => {
 
-          socket.emit('join-room', roomid, userId );
+          socket.emit('join-room', roomid, userId);
 
           this.addVideoStream(stream);
 
