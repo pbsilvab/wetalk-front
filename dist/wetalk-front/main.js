@@ -232,7 +232,7 @@ class AppComponent {
     intoMeeting(roomid) {
         console.log(roomid);
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: false,
             audio: true
         }).then(stream => {
             console.log('emit');

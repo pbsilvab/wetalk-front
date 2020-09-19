@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
   intoMeeting( roomid: string ) {
       console.log(roomid);
       navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: false,
         audio: true
       }).then( stream => {
 
