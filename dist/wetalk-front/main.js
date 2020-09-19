@@ -178,7 +178,7 @@ function AppComponent_mat_card_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("srcObject", stream_r13)("autoplay", true);
 } }
-const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].SOCKET_HOST);
+const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].SOCKET_HOST, { secure: true });
 socket.on('connect_failed', () => {
     console.log('Connection Failed');
 });

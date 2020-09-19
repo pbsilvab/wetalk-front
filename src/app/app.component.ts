@@ -8,7 +8,7 @@ import Peer from 'peerjs';
 import { environment } from 'src/environments/environment';
 
 
-const socket = io(environment.SOCKET_HOST);
+const socket = io(environment.SOCKET_HOST, { secure: true } );
 
 socket.on('connect_failed', () => {
   console.log('Connection Failed');
