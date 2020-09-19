@@ -179,9 +179,19 @@ function AppComponent_mat_card_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("srcObject", stream_r13)("autoplay", true);
 } }
 const socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__(src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].SOCKET_HOST);
+socket.on('connect_failed', () => {
+    console.log('Connection Failed');
+});
+socket.on('connect', () => {
+    console.log('Connected');
+});
+socket.on('disconnect', () => {
+    console.log('Disconnected');
+});
 const peer = new peerjs__WEBPACK_IMPORTED_MODULE_4___default.a(undefined, {
-    host: '/',
+    host: src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].PEER_HOST,
     port: 3001,
+    secure: true
 });
 let userId;
 peer.on('open', (id) => {
@@ -529,7 +539,8 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     SCHEMA_HOST: 'https://wetalk.sharkrahs.com/graphql',
-    SOCKET_HOST: 'https://wetalk.sharkrahs.com/socket.io'
+    SOCKET_HOST: 'http://wetalk.sharkrahs.com:4003',
+    PEER_HOST: 'wetalk.sharkrahs.com',
 };
 /*
  * For easier debugging in development mode, you can import the following file

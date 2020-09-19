@@ -10,9 +10,20 @@ import { environment } from 'src/environments/environment';
 
 const socket = io(environment.SOCKET_HOST);
 
+socket.on('connect_failed', () => {
+  console.log('Connection Failed');
+});
+socket.on('connect', () => {
+  console.log('Connected');
+});
+socket.on('disconnect', () => {
+console.log('Disconnected');
+});
+
 const peer = new Peer(undefined, {
-  host: '/',
+  host: environment.PEER_HOST,
   port: 3001,
+  secure: true
 });
 
 let userId: string;
